@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <title><%= blog_title %> by <%= author_name %></title>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/main.css">
+  <nav class="navbar navbar-default">
+    <div class="container">
+      <div class="navbar-header">
+        <p class="navbar-brand"><%= blog_title %> by <%= author_name %></p>
+      </div>
+        <ul class="nav navbar-nav navbar-right">
+          <% menus.forEach(m => { %>
+            <li id="<%= m.id %>"><a href="<%= m.link %>"><%= m.name %></a></li>
+          <% }) %>
+        </ul>
+    </div>
+  </nav>
+</head>
+  <body>
+    <div class="container contain">

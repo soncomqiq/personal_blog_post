@@ -1,0 +1,18 @@
+<link href="main.css" rel="stylesheet" type="text/css">
+<%- include('../components/header'); %>
+<h1>Readers Home</h1>
+<h1 class="article-title"><%= homeStartingContent %></h1>
+<% articles.forEach(article => { %>
+   <a class="article-item" href="/readers/articles/<%= article.article_id %>">
+      <div class="readers-article-block">
+         <h2><%= article.article_title %></h2>
+         <div class="article">
+            <p class="article-body"><%= _.truncate(article.article_content, {'length': 400, 'omission': ' ...'}) %></p>
+         </div>
+         <br>
+         <div><p>Written by <b><%= article.author_name %></b></p></div>
+         <div><p>Published Date: <b><%= article.published_at.split(" ")[0] %></b></p></div>
+      </div>
+   </a>
+<% }) %>
+<%- include('../components/footer'); %>

@@ -1,0 +1,24 @@
+<%- include('../components/header'); %>
+<a href="/authors">
+    <button class="btn btn-light publish">Back</button>
+</a>
+<h1>Edit Article ID: <%= article.article_id %> <span class="badge badge-<%= article.article_status === 0 ? "warning": "published" %>"><%= article.article_status === 0 ? "Draft": "Published" %></span></h1> 
+<form action="/authors/articles/<%= article.article_id %>" method="post">
+    <label class="form-label">Title</label>
+    <input value="<%= article.article_title %>" type="text" name="article_title" class="form-control">
+    <label class="form-label">Article</label>
+    <textarea cols="30" rows="10" class="form-control" name="article_content"><%= article.article_content %></textarea>
+    <label class="form-label">Author</label>
+    <input value="<%= article.author_name %>" type="text" class="form-control" disabled>
+    <label class="form-label">Created at</label>
+    <input value="<%= article.created_at %>" type="text" class="form-control" disabled>
+    <label class="form-label">Last modified</label>
+    <input value="<%= article.last_modified %>" type="text" class="form-control" disabled>
+    <label class="form-label">Published at</label>
+    <input value="<%= article.published_at %>" type="text" class="form-control" disabled>
+    <button type="submit" class="btn btn-success publish">Save changes</button>
+    <a href="/authors/articles/<%= article.article_id %>">
+        <button type="button" class="btn btn-warning publish">Reset changes</button>
+    </a>
+</form>
+<%- include('../components/footer'); %>

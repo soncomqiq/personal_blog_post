@@ -1,0 +1,31 @@
+<%- include('../components/header'); %>
+<h1><%= article.article_title %>  
+  <button type="button" class="btn btn-default btn-sm">
+    <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> <%= article.number_of_read %> 
+  </button>
+  <a href="/readers/articles/like/<%= article.article_id %>?current_like=<%= article.number_of_like %>" type="button" class="btn btn-default btn-sm">
+    <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span> <%= article.number_of_like %> 
+  </a>
+</h1>
+<hr>
+<p><%= article.article_content %></p>
+<p>Published data: <%= article.published_at %></p>
+<hr>
+<h4>Comments</h4>
+<% comments.forEach(comment => { %>
+    <div class="comment-card">
+        <p>Name: <b><%= comment.commenter_name %></b></p>
+        <hr>
+        <p><%= comment.comment_content %></p>
+    </div>
+<% }) %>
+<div class="comment-card">
+    <form action="/readers/articles/comment/<%= article_id %>" method="post">
+        <label class="form-label">Commenter name</label>
+        <input type="text" name="commenter_name" class="form-control" required>
+        <label class="form-label">comment</label>
+        <input type="text" name="comment_content" class="form-control" required>
+        <button type="submit" class="btn btn-success publish">Comment</button>
+    </form>
+</div>
+<%- include('../components/footer'); %>

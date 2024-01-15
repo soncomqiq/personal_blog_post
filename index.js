@@ -25,14 +25,22 @@ global.db = new sqlite3.Database('./database.db',function(err){
     }
 });
 
+const shared_data = require("./routes/shared-data")
+
 // Handle requests to the home page 
 app.get('/', (req, res) => {
-    res.send('Hello World!')
+    res.render("home-page", {
+        ...shared_data
+    })
 });
 
 // Add all the route handlers in usersRoutes to the app under the path /users
 const usersRoutes = require('./routes/users');
+const authorsRoutes = require('./routes/authors');
+const readersRoutes = require('./routes/readers');
 app.use('/users', usersRoutes);
+app.use('/authors', authorsRoutes);
+app.use('/readers', readersRoutes);
 
 
 // Make the web application listen for HTTP requests

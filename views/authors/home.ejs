@@ -1,0 +1,49 @@
+<%- include('../components/header'); %>
+   <div>
+      <div class="author-header">
+         <h1>Author Home</h1>
+         <form action="/authors/articles" method="post">
+            <button class="btn btn-success draft-button">Create new draft</button>
+         </form>
+      </div>
+      <h1 class="article-title">Published articles</h1>
+      <% published_articles.forEach(article=> { %>
+         <div class="article-block">
+            <p class="publish-author-title">Title: <b><%= article.article_title %></b></p>
+            <p>
+               Content: <b><%= _.truncate(article.article_content, {'length': 150, 'omission' : ' ...' }) %></b>
+            </p>
+            <p class="home-author-label">Created at: <b><%= article.created_at %></b></p>
+            <p class="home-author-label">Published at: <b><%= article.published_at %></b></p>
+            <p class="home-author-label">Last modified: <b><%= article.last_modified %></b></p>
+            <p class="home-author-label">Number of reads: <b><%= article.number_of_read %></b></p>
+            <p class="home-author-label">Number of likes: <b><%= article.number_of_like %></b></p>
+            <p class="home-author-label">Author name: <b><%= article.author_name %></b></p>
+            <p class="home-author-label">Sharing link: <b><a href="http://localhost:3000/readers/articles/<%= article.article_id %>">http://localhost:3000/readers/articles/<%= article.article_id %></a></b></p>
+            <br>
+            <a href="/authors/articles/delete/<%= article.article_id %>"  class="btn btn-danger">Delete</a>
+         </div>
+      <% }) %>
+   </div>
+   <div>
+      <h1 class="article-title">Draft articles</h1>
+      <% draft_articles.forEach(article=> { %>
+         <div class="article-block">
+            <p class="publish-author-title">Title: <b><%= article.article_title %></b></p>
+            <p>
+               Content: <b><%= _.truncate(article.article_content, {'length': 150, 'omission' : ' ...' }) %></b>
+            </p>
+            <p class="home-author-label">Created at: <b><%= article.created_at %></b></p>
+            <p class="home-author-label">Published at: <b><%= article.published_at %></b></p>
+            <p class="home-author-label">Last modified: <b><%= article.last_modified %></b></p>
+            <p class="home-author-label">Author name: <b><%= article.author_name %></b></p>
+            <p class="home-author-label">Edit page link: <b><a href="http://localhost:3000/authors/articles/<%= article.article_id %>">http://localhost:3000/readers/articles/<%= article.article_id %></a></b></p>
+
+            <br>
+            <a href="/authors/articles/<%= article.article_id %>"  class="btn btn-warning">Edit</a>
+            <a href="/authors/articles/delete/<%= article.article_id %>"  class="btn btn-danger">Delete</a>
+            <a href="/authors/articles/publish/<%= article.article_id %>"  class="btn btn-success">Publish</a>
+         </div>
+         <% }) %>
+   </div>
+   <%- include('../components/footer'); %>
